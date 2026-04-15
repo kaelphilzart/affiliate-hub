@@ -1,2 +1,2 @@
 # affiliate-hub
-web apss untuk memajang link affiliate, apps ini untuk menjadi wadah untuk mendisplay product yang di promosikan
+web apps untuk memajang link affiliate, apps ini untuk menjadi wadah untuk mendisplay product yang di promosikan
