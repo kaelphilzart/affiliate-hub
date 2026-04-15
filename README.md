@@ -20,7 +20,7 @@ Aplikasi ini berfungsi sebagai wadah display produk affiliate agar lebih mudah d
 - Responsive UI
 
 # Installation Guide 
-1. git clone https://github.com/username/affiliate-hub.git
+1. git clone (https://github.com/kaelphilzart/affiliate-hub.git)
 2. cd affiliate-hub
 3. composer install
 4. npm install
