@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
-import { ICategoryUpdate } from '@/types/category';
 import { Input } from '@/components/ui/input'
+import type { ICategoryUpdate } from '@/types/category';
 
 /**
  * PROPS
@@ -24,7 +24,9 @@ const form = ref<Partial<ICategoryUpdate>>({
  * INIT STATE FROM PROPS (SAFE)
  */
 onMounted(() => {
-    if (!props.formData) return
+    if (!props.formData) {
+return
+}
 
     form.value = {
         ...form.value,

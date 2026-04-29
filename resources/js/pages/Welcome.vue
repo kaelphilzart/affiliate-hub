@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3'
 import { computed, ref } from 'vue'
-import Input from '@/components/ui/input/Input.vue'
-import { IProduct } from '@/types/product'
-import { ICategory } from '@/types/category'
 import { Button } from '@/components/ui/button'
-
 import {
     Card,
     CardContent,
 } from '@/components/ui/card'
+import Input from '@/components/ui/input/Input.vue'
+import type { ICategory } from '@/types/category'
+import type { IProduct } from '@/types/product'
+
 
 const props = defineProps<{
     canRegister: boolean
@@ -38,6 +38,7 @@ const filteredProducts = computed(() => {
             p.link?.toLowerCase().includes(q)
         )
     }
+
     if (selectedCategory.value) {
         result = result.filter((p) => p.category.id === selectedCategory.value)
     }

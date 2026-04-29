@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
-import { ICategory, ICategoryCreate, ICategoryUpdate } from '@/types/category';
+import { ref } from 'vue';
+import { toast } from 'vue-sonner'
+import { Button } from '@/components/ui/button';
 import { ModalForm } from '@/components/ui/custom-components';
 import { DataTable } from '@/components/ui/custom-components';
-import { Button } from '@/components/ui/button';
-import { toast } from 'vue-sonner'
+import type { ICategory, ICategoryCreate, ICategoryUpdate } from '@/types/category';
 
 import AddCategory from './forms/AddCategory.vue';
 import EditCategory from './forms/EditCategory.vue';
@@ -53,18 +53,20 @@ const isOpenEditForm = ref(false)
  */
 const getChangedFields = <T extends Record<string, any>>(newData: T, oldData: T) => {
     const changed: Partial<T> = {};
+
     for (const key in newData) {
         if (newData[key] !== oldData[key]) {
             changed[key] = newData[key];
         }
     }
+
     return changed;
 };
 
 const cleanPayload = (obj: Record<string, any>) =>
     Object.fromEntries(
         Object.entries(obj).filter(
-            ([_, v]) => v !== '' && v !== null && v !== undefined
+            ([, v]) => v !== '' && v !== null && v !== undefined
         )
     )
 
@@ -119,7 +121,9 @@ const handleOpenEDit = (category: ICategory) => {
 
 /* ================= UPDATE ================= */
 const handleUpdate = () => {
-    if (!originalEditData.value) return
+    if (!originalEditData.value) {
+return
+}
 
     router.put(
         `/categories/${originalEditData.value.id}`,
@@ -176,7 +180,7 @@ const handleDelete = (category: ICategory) => {
         <!-- TABLE -->
         <DataTable :data="categories" :columns="columns" searchable-key="name">
             <!-- 🔥 NO COLUMN -->
-            <template #no="{ row, index }">
+            <template #no="{ index }">
                 {{ index + 1 }}
             </template>
 

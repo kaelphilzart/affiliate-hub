@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, computed } from 'vue'
-import { ICreateProduct } from '@/types/product'
-import { ICategory } from '@/types/category'
-import { Input } from '@/components/ui/input'
 import { ListViewSelect } from '@/components/ui/custom-components'
+import { Input } from '@/components/ui/input'
+import type { ICategory } from '@/types/category'
+import type { ICreateProduct } from '@/types/product'
 
 const props = defineProps<{
     formData?: Partial<ICreateProduct>
@@ -75,7 +75,9 @@ const handleFileChange = (e: Event) => {
     const target = e.target as HTMLInputElement
     const file = target.files?.[0]
 
-    if (!file) return
+    if (!file) {
+return
+}
 
     form.value.image = file
 

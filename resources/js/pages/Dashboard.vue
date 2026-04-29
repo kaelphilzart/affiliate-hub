@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3'
-import { computed } from 'vue'
 import { Package, Folder, MousePointerClick } from 'lucide-vue-next'
 import { ArrowRight } from 'lucide-vue-next'
 

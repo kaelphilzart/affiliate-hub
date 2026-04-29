@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import { Head } from '@inertiajs/vue3'
-import { IProduct, ICreateProduct, IUpdateProduct } from '@/types/product'
-import { ICategory } from '@/types/category'
 import { router } from '@inertiajs/vue3'
+import { Trash2, Edit2 } from 'lucide-vue-next'
+import { computed, ref } from 'vue'
+import { toast } from 'vue-sonner'
 import { Button } from '@/components/ui/button/'
 import { Card, CardContent } from '@/components/ui/card'
 import { ModalForm } from '@/components/ui/custom-components'
-import { Trash2, Edit2 } from 'lucide-vue-next'
-import { toast } from 'vue-sonner'
 import { Input } from '@/components/ui/input'
+import type { ICategory } from '@/types/category'
+import type { IProduct, ICreateProduct, IUpdateProduct } from '@/types/product'
 
 import AddProduct from './forms/AddProduct.vue'
 import EditProduct from './forms/EditProduct.vue'
@@ -34,7 +34,9 @@ defineOptions({
 const search = ref('')
 
 const filteredProducts = computed(() => {
-    if (!search.value) return props.products
+    if (!search.value) {
+return props.products
+}
 
     return props.products.filter((p) =>
         p.name.toLowerCase().includes(search.value.toLowerCase()) ||
@@ -109,7 +111,9 @@ const handleOpenEdit = (product: IProduct) => {
 
 /* ================= UPDATE ================= */
 const handleUpdate = () => {
-    if (!originalEditData.value) return
+    if (!originalEditData.value) {
+return
+}
 
     router.put(`/products/${originalEditData.value.id}`, editProductData.value, {
         preserveScroll: true,

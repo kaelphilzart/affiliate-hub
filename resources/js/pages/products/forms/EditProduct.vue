@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
-import { IUpdateProduct } from '@/types/product'
-import { Input } from '@/components/ui/input'
 import ListViewSelect from '@/components/ui/custom-components/ListViewSelect.vue'
+import { Input } from '@/components/ui/input'
+import type { IUpdateProduct } from '@/types/product'
 
 /**
  * PROPS
@@ -28,7 +28,9 @@ const preview = ref<string | null>(null)
  * INIT STATE FROM PROPS (SAFE)
  */
 onMounted(() => {
-    if (!props.formData) return
+    if (!props.formData) {
+return
+}
 
     form.value = {
         ...form.value,
@@ -59,7 +61,9 @@ const handleFileChange = (e: Event) => {
     const target = e.target as HTMLInputElement
     const file = target.files?.[0]
 
-    if (!file) return
+    if (!file) {
+return
+}
 
     form.value.image = file
 

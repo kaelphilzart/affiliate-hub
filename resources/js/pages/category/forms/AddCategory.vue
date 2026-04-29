@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
-import { ICategoryCreate } from '@/types/category';
 import { Input } from '@/components/ui/input'
+import type { ICategoryCreate } from '@/types/category';
 
 const props = defineProps<{
     formData?: Partial<ICategoryCreate>
