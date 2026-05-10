@@ -82,10 +82,11 @@ const filteredProducts = computed(() => {
                     <section class="px-5 py-4 text-white">
 
                         <div class="flex items-start gap-3">
-
-                            <img src="https://images.unsplash.com/photo-1602492665157-639323eadd31?q=80&w=774&auto=format&fit=crop"
-                                class="w-20 h-20 rounded-full object-cover shrink-0 border-2 border-white" />
-
+                            <a href="https://shopee.co.id" target="_blank"
+                                class="flex items-start gap-3 transition-opacity hover:opacity-90">
+                                <img src="https://images.unsplash.com/photo-1602492665157-639323eadd31?q=80&w=774&auto=format&fit=crop"
+                                    class="w-20 h-20 rounded-full object-cover shrink-0 border-2 border-white" />
+                            </a>
                             <div class="flex-1">
                                 <h1 class="text-xl font-bold leading-tight">
                                     Dea Store
@@ -138,7 +139,8 @@ const filteredProducts = computed(() => {
 
                     <a v-for="p in filteredProducts" :key="p.id" :href="`/r/${p.id}`" target="_blank" class="block">
 
-                        <Card class="overflow-hidden p-0 gap-0 rounded-none cursor-pointer hover:shadow-md transition bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+                        <Card
+                            class="overflow-hidden p-0 gap-0 rounded-none cursor-pointer hover:shadow-md transition bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
 
                             <img :src="p.image_url" class="aspect-square w-auto mx-4 object-cover block" />
 
