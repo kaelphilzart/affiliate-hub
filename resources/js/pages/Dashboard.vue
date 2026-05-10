@@ -35,35 +35,56 @@ defineOptions({
         <div class="grid gap-4 md:grid-cols-3">
 
             <!-- PRODUCTS -->
-            <div class="rounded-xl border p-4 bg-white shadow-sm">
+            <div
+                class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-900">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-gray-500">Total Products</p>
-                        <p class="text-2xl font-bold">{{ totalProducts }}</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                            Total Products
+                        </p>
+
+                        <p class="text-2xl font-bold text-gray-900 dark:text-white">
+                            {{ totalProducts }}
+                        </p>
                     </div>
-                    <Package class="w-6 h-6 text-gray-500" />
+
+                    <Package class="w-6 h-6 text-gray-500 dark:text-gray-400" />
                 </div>
             </div>
 
             <!-- CATEGORIES -->
-            <div class="rounded-xl border p-4 bg-white shadow-sm">
+            <div
+                class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-900">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-gray-500">Total Categories</p>
-                        <p class="text-2xl font-bold">{{ totalCategories }}</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                            Total Categories
+                        </p>
+
+                        <p class="text-2xl font-bold text-gray-900 dark:text-white">
+                            {{ totalCategories }}
+                        </p>
                     </div>
-                    <Folder class="w-6 h-6 text-gray-500" />
+
+                    <Folder class="w-6 h-6 text-gray-500 dark:text-gray-400" />
                 </div>
             </div>
 
             <!-- AUDIENCE -->
-            <div class="rounded-xl border p-4 bg-white shadow-sm">
+            <div
+                class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-900">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-gray-500">Total Clicks</p>
-                        <p class="text-2xl font-bold">{{ totalAudienceClick }}</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                            Total Clicks
+                        </p>
+
+                        <p class="text-2xl font-bold text-gray-900 dark:text-white">
+                            {{ totalAudienceClick }}
+                        </p>
                     </div>
-                    <MousePointerClick class="w-6 h-6 text-gray-500" />
+
+                    <MousePointerClick class="w-6 h-6 text-gray-500 dark:text-gray-400" />
                 </div>
             </div>
 
@@ -73,61 +94,97 @@ defineOptions({
         <div class="grid gap-4 md:grid-cols-2">
 
             <!-- LATEST PRODUCTS -->
-            <div class="rounded-xl border bg-white p-4">
-                <h2 class="mb-3 text-sm font-semibold">Latest Products</h2>
+            <div
+                class="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+
+                <h2 class="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
+                    Latest Products
+                </h2>
 
                 <div class="space-y-2">
+
                     <div v-for="p in latestProducts" :key="p.id"
-                        class="flex items-center justify-between rounded-md border px-3 py-2">
+                        class="flex items-center justify-between rounded-md border border-gray-200 px-3 py-2 dark:border-gray-800 dark:bg-gray-950">
+
                         <div class="min-w-0">
-                            <p class="truncate text-sm font-medium">
+
+                            <p class="truncate text-sm font-medium text-gray-900 dark:text-white">
                                 {{ p.name }}
                             </p>
-                            <p class="text-xs text-gray-500">
+
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
                                 {{ p.category?.name }}
                             </p>
+
                         </div>
 
-                        <span class="text-xs text-gray-400">
+                        <span class="text-xs text-gray-400 dark:text-gray-500">
                             {{ p.type }}
                         </span>
+
                     </div>
+
                 </div>
-                 <!-- VIEW ALL -->
+
+                <!-- VIEW ALL -->
                 <div v-if="hasMoreCategories" class="mt-3 flex justify-end">
-                    <Link href="/products" class="flex items-center gap-1 text-xs text-blue-600 hover:underline">
+
+                    <Link href="/products"
+                        class="flex items-center gap-1 text-xs text-blue-600 hover:underline dark:text-blue-400">
+
                         View all
+
                         <ArrowRight class="w-3 h-3" />
+
                     </Link>
+
                 </div>
+
             </div>
 
             <!-- LATEST CATEGORIES -->
-            <div class="rounded-xl border bg-white p-4">
-                <h2 class="mb-3 text-sm font-semibold">Latest Categories</h2>
+            <div
+                class="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+
+                <h2 class="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
+                    Latest Categories
+                </h2>
 
                 <div class="space-y-2">
+
                     <div v-for="c in latestCategories" :key="c.id"
-                        class="flex items-center justify-between rounded-md border px-3 py-2">
-                        <p class="text-sm font-medium">
+                        class="flex items-center justify-between rounded-md border border-gray-200 px-3 py-2 dark:border-gray-800 dark:bg-gray-950">
+
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">
                             {{ c.name }}
                         </p>
 
-                        <span class="text-xs text-gray-400">
+                        <span class="text-xs text-gray-400 dark:text-gray-500">
                             new
                         </span>
+
                     </div>
+
                 </div>
+
                 <!-- VIEW ALL -->
                 <div v-if="hasMoreCategories" class="mt-3 flex justify-end">
-                    <Link href="/categories" class="flex items-center gap-1 text-xs text-blue-600 hover:underline">
+
+                    <Link href="/categories"
+                        class="flex items-center gap-1 text-xs text-blue-600 hover:underline dark:text-blue-400">
+
                         View all
+
                         <ArrowRight class="w-3 h-3" />
+
                     </Link>
+
                 </div>
+
             </div>
 
         </div>
 
     </div>
+
 </template>

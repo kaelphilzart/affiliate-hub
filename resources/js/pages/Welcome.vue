@@ -138,7 +138,7 @@ const filteredProducts = computed(() => {
 
                     <a v-for="p in filteredProducts" :key="p.id" :href="`/r/${p.id}`" target="_blank" class="block">
 
-                        <Card class="overflow-hidden p-0 gap-0 rounded-none cursor-pointer hover:shadow-md transition">
+                        <Card class="overflow-hidden p-0 gap-0 rounded-none cursor-pointer hover:shadow-md transition bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
 
                             <img :src="p.image_url" class="aspect-square w-auto mx-4 object-cover block" />
 
@@ -165,7 +165,6 @@ const filteredProducts = computed(() => {
                 </div>
 
             </section>
-
         </div>
     </div>
 </template>
