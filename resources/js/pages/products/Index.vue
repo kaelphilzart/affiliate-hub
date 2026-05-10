@@ -35,8 +35,8 @@ const search = ref('')
 
 const filteredProducts = computed(() => {
     if (!search.value) {
-return props.products
-}
+        return props.products
+    }
 
     return props.products.filter((p) =>
         p.name.toLowerCase().includes(search.value.toLowerCase()) ||
@@ -101,6 +101,7 @@ const handleOpenEdit = (product: IProduct) => {
         link: product.link,
         type: product.type,
         image: product.image,
+        image_url: product.image_url,
     }
 
     originalEditData.value = mapped
@@ -112,8 +113,8 @@ const handleOpenEdit = (product: IProduct) => {
 /* ================= UPDATE ================= */
 const handleUpdate = () => {
     if (!originalEditData.value) {
-return
-}
+        return
+    }
 
     router.put(`/products/${originalEditData.value.id}`, editProductData.value, {
         preserveScroll: true,

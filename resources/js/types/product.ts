@@ -27,5 +27,6 @@ export interface IUpdateProduct {
     category_id?: string;
     link?: string;
     image?: File | string | null; 
+    image_url?: string;
     type?: string;
 }

@@ -8,18 +8,18 @@ import type { IUpdateProduct } from '@/types/product'
  * PROPS
  */
 const props = defineProps<{
-    formData?: Partial<IUpdateProduct>
-    onChange?: (data: Partial<IUpdateProduct>) => void
+  formData?: Partial<IUpdateProduct>
+  onChange?: (data: Partial<IUpdateProduct>) => void
 }>()
 
 /**
  * STATE
  */
 const form = ref<Partial<IUpdateProduct>>({
-    name: '',
-    link: '',
-    image: null,
-    type: '',
+  name: '',
+  link: '',
+  image: null,
+  type: '',
 })
 
 const preview = ref<string | null>(null)
@@ -28,60 +28,60 @@ const preview = ref<string | null>(null)
  * INIT STATE FROM PROPS (SAFE)
  */
 onMounted(() => {
-    if (!props.formData) {
-return
-}
+  if (!props.formData) {
+    return
+  }
 
-    form.value = {
-        ...form.value,
-        ...props.formData,
-    }
+  form.value = {
+    ...form.value,
+    ...props.formData,
+  }
 
-    // handle existing image url
-    if (typeof props.formData.image === 'string') {
-        preview.value = props.formData.image
-    }
+  // pakai image_url
+  if ((props.formData as any).image_url) {
+    preview.value = (props.formData as any).image_url
+  }
 })
 
 /**
  * SYNC TO PARENT (SAFE + CLONED)
  */
 watch(
-    form,
-    (val) => {
-        props.onChange?.({ ...val })
-    },
-    { deep: true }
+  form,
+  (val) => {
+    props.onChange?.({ ...val })
+  },
+  { deep: true }
 )
 
 /**
  * FILE HANDLER
  */
 const handleFileChange = (e: Event) => {
-    const target = e.target as HTMLInputElement
-    const file = target.files?.[0]
+  const target = e.target as HTMLInputElement
+  const file = target.files?.[0]
 
-    if (!file) {
-return
-}
+  if (!file) {
+    return
+  }
 
-    form.value.image = file
+  form.value.image = file
 
-    // cleanup previous preview
-    if (preview.value && preview.value.startsWith('blob:')) {
-        URL.revokeObjectURL(preview.value)
-    }
+  // cleanup previous preview
+  if (preview.value && preview.value.startsWith('blob:')) {
+    URL.revokeObjectURL(preview.value)
+  }
 
-    preview.value = URL.createObjectURL(file)
+  preview.value = URL.createObjectURL(file)
 }
 
 /**
  * OPTIONS
  */
 const types = [
-    { label: 'Shopee', value: 'SHOPEE' },
-    { label: 'TikTok', value: 'TIKTOK' },
-    { label: 'Tokopedia', value: 'TOKOPEDIA' },
+  { label: 'Shopee', value: 'SHOPEE' },
+  { label: 'TikTok', value: 'TIKTOK' },
+  { label: 'Tokopedia', value: 'TOKOPEDIA' },
 ]
 </script>
 
@@ -107,10 +107,7 @@ const types = [
       <Input type="file" accept="image/*" @change="handleFileChange" />
 
       <div v-if="preview" class="mt-3">
-        <img
-          :src="preview"
-          class="h-32 w-32 rounded-lg object-cover border"
-        />
+        <img :src="preview" class="h-32 w-32 rounded-lg object-cover border" />
       </div>
     </div>
 
