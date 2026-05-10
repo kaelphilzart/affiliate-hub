@@ -82,7 +82,7 @@ const filteredProducts = computed(() => {
                     <section class="px-5 py-4 text-white">
 
                         <div class="flex items-start gap-3">
-                            <a href="https://shopee.co.id" target="_blank"
+                            <a href="https://www.tiktok.com/@greengirl181?_r=1&_t=ZS-96F0FNyDsSz" target="_blank"
                                 class="flex items-start gap-3 transition-opacity hover:opacity-90">
                                 <img src="https://images.unsplash.com/photo-1602492665157-639323eadd31?q=80&w=774&auto=format&fit=crop"
                                     class="w-20 h-20 rounded-full object-cover shrink-0 border-2 border-white" />
@@ -142,21 +142,54 @@ const filteredProducts = computed(() => {
                         <Card
                             class="overflow-hidden p-0 gap-0 rounded-none cursor-pointer hover:shadow-md transition bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
 
-                            <img :src="p.image_url" class="aspect-square w-auto mx-4 object-cover block" />
+                            <!-- IMAGE -->
+                            <div class="bg-gray-50 dark:bg-gray-950">
+                                <img :src="p.image_url" class="aspect-square w-auto mx-4 object-cover block" />
+                            </div>
 
-                            <CardContent class="p-2 pt-1 space-y-0.5">
-                                <p class="text-sm leading-tight overflow-hidden mt-2 ml-2" style="
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                    line-clamp: 2;
-                ">
+                            <CardContent class="p-3 space-y-2">
+
+                                <!-- TOP ROW -->
+                                <div class="flex items-center justify-between gap-2">
+
+                                    <!-- CATEGORY -->
+                                    <span
+                                        class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300 truncate max-w-20">
+
+                                        {{ p.category?.name }}
+
+                                    </span>
+
+                                    <!-- PLATFORM ICON -->
+                                    <div
+                                        class="shrink-0 rounded-full border border-white/80 bg-white p-1 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+
+                                        <img v-if="p.type === 'TIKTOK'" src="/logos/tiktok-logo.png"
+                                            class="h-4 w-4 object-contain" />
+
+                                        <img v-else-if="p.type === 'SHOPEE'" src="/logos/shopee-logo.png"
+                                            class="h-4 w-4 object-contain" />
+
+                                        <img v-else-if="p.type === 'TOKOPEDIA'" src="/logos/tokopedia-logo.png"
+                                            class="h-4 w-4 object-contain" />
+
+                                    </div>
+
+                                </div>
+
+                                <!-- TITLE -->
+                                <p class="text-sm leading-tight text-gray-900 dark:text-white overflow-hidden" style="
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                line-clamp: 2;
+            ">
                                     {{ p.name }}
                                 </p>
+
                             </CardContent>
 
                         </Card>
-
                     </a>
 
                 </div>
