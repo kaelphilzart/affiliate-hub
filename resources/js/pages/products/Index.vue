@@ -81,8 +81,6 @@ const handleSubmit = () => {
             toast.success('Product created successfully')
         },
         onError: (errors) => {
-            console.log(errors)
-
             const firstError = Object.values(errors)?.[0]
 
             let message = 'Failed to create product'
@@ -113,7 +111,7 @@ const handleOpenEdit = (product: IProduct) => {
         category_id: product.category?.id ?? '',
         link: product.link,
         type: product.type,
-        image: product.image,
+        image: null,
         image_url: product.image_url,
     }
 
@@ -129,25 +127,37 @@ const handleUpdate = () => {
         return
     }
 
-    router.put(`/products/${originalEditData.value.id}`, editProductData.value, {
-        preserveScroll: true,
-        onSuccess: () => {
-            isOpenEditForm.value = false
-            originalEditData.value = null
-            editProductData.value = {}
-
-            toast.success('Product updated successfully')
+    router.post(
+        `/products/${originalEditData.value.id}`,
+        {
+            _method: 'put',
+            ...editProductData.value,
         },
-        onError: (errors) => {
-            const firstError = Object.values(errors)?.[0]
+        {
+            forceFormData: true,
+            preserveScroll: true,
 
-            toast.error(
-                Array.isArray(firstError)
-                    ? firstError[0]
-                    : 'Failed to update product',
-            )
+            onSuccess: () => {
+                isOpenEditForm.value = false
+                originalEditData.value = null
+                editProductData.value = {}
+
+                toast.success('Product updated successfully')
+            },
+
+            onError: (errors) => {
+                const firstError = Object.values(errors)?.[0]
+
+                toast.error(
+                    Array.isArray(firstError)
+                        ? firstError[0]
+                        : typeof firstError === 'string'
+                            ? firstError
+                            : 'Failed to update product',
+                )
+            },
         },
-    })
+    )
 }
 
 /* ================= DELETE ================= */

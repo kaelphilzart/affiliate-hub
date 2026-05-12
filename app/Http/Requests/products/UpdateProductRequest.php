@@ -25,7 +25,7 @@ class UpdateProductRequest extends FormRequest
         return [
             'name' => 'sometimes|string|max:255',
             'link' => 'sometimes|url',
-            'image' => 'sometimes|image|max:2048',
+            'image' => 'nullable|image|max:2048',
             'type' => 'sometimes|string|max:100',
         ];
     }
