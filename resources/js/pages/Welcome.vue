@@ -143,8 +143,8 @@ const filteredProducts = computed(() => {
                             class="overflow-hidden p-0 gap-0 rounded-none cursor-pointer hover:shadow-md transition bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
 
                             <!-- IMAGE -->
-                            <div class="bg-gray-50 dark:bg-gray-950">
-                                <img :src="p.image_url" class="aspect-square w-auto mx-4 object-cover block" />
+                            <div class="aspect-square w-full overflow-hidden bg-gray-50 dark:bg-gray-950">
+                                <img :src="p.image_url" class="w-full h-full object-cover object-center" />
                             </div>
 
                             <CardContent class="p-3 space-y-2">
