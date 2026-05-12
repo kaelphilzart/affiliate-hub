@@ -81,13 +81,26 @@ const handleSubmit = () => {
             toast.success('Product created successfully')
         },
         onError: (errors) => {
+            console.log(errors)
+
             const firstError = Object.values(errors)?.[0]
 
-            toast.error(
-                Array.isArray(firstError)
-                    ? firstError[0]
-                    : 'Failed to create product',
-            )
+            let message = 'Failed to create product'
+
+            if (Array.isArray(firstError)) {
+                message = firstError[0]
+            } else if (typeof firstError === 'string') {
+                message = firstError
+            }
+
+            if (
+                message.includes('failed to upload') ||
+                message.includes('Failed to upload')
+            ) {
+                message = 'Image maximum size is 2 MB'
+            }
+
+            toast.error(message)
         },
     })
 }
