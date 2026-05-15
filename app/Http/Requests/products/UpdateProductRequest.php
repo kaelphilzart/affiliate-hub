@@ -26,7 +26,12 @@ class UpdateProductRequest extends FormRequest
             'name' => 'sometimes|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'link' => 'sometimes|url',
-            'image' => 'nullable|image|max:2048',
+            'image' => [
+                'nullable',
+                'file',
+                'mimes:jpg,jpeg,png,webp,avif',
+                'max:5120',
+            ],
             'type' => 'sometimes|string|max:100',
         ];
     }
