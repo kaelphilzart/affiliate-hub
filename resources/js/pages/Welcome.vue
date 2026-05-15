@@ -137,7 +137,8 @@ const filteredProducts = computed(() => {
 
                 <div class="grid grid-cols-2 gap-3">
 
-                    <a v-for="p in filteredProducts" :key="p.id" :href="`/r/${p.id}`" target="_blank" class="block">
+                    <a v-for="(p, index) in filteredProducts" :key="p.id" :href="`/r/${p.id}`" target="_blank"
+                        class="block">
 
                         <Card
                             class="overflow-hidden p-0 gap-0 rounded-none cursor-pointer hover:shadow-md transition bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
@@ -184,7 +185,7 @@ const filteredProducts = computed(() => {
                 -webkit-box-orient: vertical;
                 line-clamp: 2;
             ">
-                                    {{ p.name }}
+                                    {{ index + 1 }}. {{ p.name }}
                                 </p>
 
                             </CardContent>
