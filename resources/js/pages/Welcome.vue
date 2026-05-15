@@ -185,7 +185,7 @@ const filteredProducts = computed(() => {
                 -webkit-box-orient: vertical;
                 line-clamp: 2;
             ">
-                                    {{ index + 1 }}. {{ p.name }}
+                                    {{ filteredProducts.length - index }}. {{ p.name }}
                                 </p>
 
                             </CardContent>

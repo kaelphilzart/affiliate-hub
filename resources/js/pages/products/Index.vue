@@ -189,7 +189,7 @@ const handleDelete = (product: IProduct) => {
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 py-4">
 
-            <Card v-for="p in filteredProducts" :key="p.id"
+            <Card v-for="(p, index) in filteredProducts" :key="p.id"
                 class="overflow-hidden rounded-xl border bg-white dark:bg-gray-900 dark:border-gray-800 p-0 transition hover:-translate-y-1 hover:shadow-xl">
 
                 <!-- IMAGE -->
@@ -231,7 +231,7 @@ const handleDelete = (product: IProduct) => {
 
                     <!-- NAME -->
                     <p class="text-sm font-medium leading-tight line-clamp-2 text-gray-900 dark:text-white">
-                        {{ p.name }}
+                        {{ filteredProducts.length - index }}. {{ p.name }}
                     </p>
 
                     <!-- ACTION ROW -->
