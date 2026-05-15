@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, computed } from 'vue'
 import ListViewSelect from '@/components/ui/custom-components/ListViewSelect.vue'
 import { Input } from '@/components/ui/input'
 import type { IUpdateProduct } from '@/types/product'
+import type { ICategory } from '@/types/category'
 
 /**
  * PROPS
@@ -10,6 +11,7 @@ import type { IUpdateProduct } from '@/types/product'
 const props = defineProps<{
   formData?: Partial<IUpdateProduct>
   onChange?: (data: Partial<IUpdateProduct>) => void
+  categories: ICategory[]
 }>()
 
 /**
@@ -17,6 +19,7 @@ const props = defineProps<{
  */
 const form = ref<Partial<IUpdateProduct>>({
   name: '',
+  category_id: undefined,
   link: '',
   image: null,
   type: '',
@@ -53,6 +56,15 @@ watch(
   },
   { deep: true }
 )
+
+/* ================= CATEGORY ================= */
+const categoryItems = computed(() =>
+    props.categories.map((c) => ({
+        label: c.name,
+        value: c.id,
+    }))
+)
+
 
 /**
  * FILE HANDLER
@@ -93,6 +105,18 @@ const types = [
       <label class="text-sm font-medium">Product Name</label>
       <Input v-model="form.name" />
     </div>
+     <!-- CATEGORY -->
+        <div class="space-y-1">
+            <label class="text-xs font-medium text-gray-600 dark:text-gray-300">
+                Category
+            </label>
+
+            <ListViewSelect
+                v-model="form.category_id"
+                :items="categoryItems"
+                placeholder="Pilih kategori"
+            />
+        </div>
 
     <!-- LINK -->
     <div>

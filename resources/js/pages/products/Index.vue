@@ -277,6 +277,6 @@ const handleDelete = (product: IProduct) => {
 
     <ModalForm :open="isOpenEditForm" title="Edit Product" :onClose="() => (isOpenEditForm = false)"
         :onSubmit="handleUpdate">
-        <EditProduct :formData="editProductData" :onChange="(data) => (editProductData = data)" />
+        <EditProduct :formData="editProductData" :onChange="(data) => (editProductData = data)" :categories="categories"/>
     </ModalForm>
 </template>

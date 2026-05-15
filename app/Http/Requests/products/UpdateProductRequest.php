@@ -24,6 +24,7 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name' => 'sometimes|string|max:255',
+            'category_id' => 'required|exists:categories,id',
             'link' => 'sometimes|url',
             'image' => 'nullable|image|max:2048',
             'type' => 'sometimes|string|max:100',
